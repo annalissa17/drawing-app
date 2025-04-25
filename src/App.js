@@ -6,6 +6,9 @@ const generator = rough.generator()
 
 const App = () => {
 
+  const [elements, setElements] = useState([])
+  const [drawing, setDrawing] = useState(false)
+
   useLayoutEffect(() => {
     const canvas = document.getElementById('canvas')
     const ctx = canvas.getContext('2d')
@@ -18,11 +21,27 @@ const App = () => {
     roughCanvas.draw(line)
   })
 
+  const handleMouseDown = (event) => {
+    setDrawing(true)
+  }
+
+  const handleMouseMove = (event) => {
+    if(!drawing) return
+
+    const {clientX, clientY} = event
+    console.log(clientX, clientY)
+  }
+
+  const handleMouseUp = (event) => {}
+
   return (
     <canvas id='canvas' 
       style={{backgroundColor: '#3b3a39'}} 
       width={window.innerWidth} 
-      height={window.innerHeight}>
+      height={window.innerHeight}
+      onMouseDown={handleMouseDown} 
+      onMouseMove={handleMouseMove} 
+      onMouseUp={handleMouseUp}>
       canvas
     </canvas>
   );

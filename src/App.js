@@ -1,24 +1,30 @@
-import logo from './logo.svg';
+import React, { useLayoutEffect, useState } from 'react';
 import './App.css';
+import rough from 'roughjs/bundled/rough.esm'
 
-function App() {
+const generator = rough.generator()
+
+const App = () => {
+
+  useLayoutEffect(() => {
+    const canvas = document.getElementById('canvas')
+    const ctx = canvas.getContext('2d')
+
+    const roughCanvas = rough.canvas(canvas)
+    const rect = generator.rectangle(10, 10, 100, 100)
+    const line = generator.line(10, 10, 100, 100)
+
+    roughCanvas.draw(rect)
+    roughCanvas.draw(line)
+  })
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <canvas id='canvas' 
+      style={{backgroundColor: '#3b3a39'}} 
+      width={window.innerWidth} 
+      height={window.innerHeight}>
+      canvas
+    </canvas>
   );
 }
 

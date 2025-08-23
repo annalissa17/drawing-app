@@ -1,38 +1,46 @@
-.App {
-  text-align: center;
+
+.wrapper{
+  padding-left: 45px;
+  padding-right: 45px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.body{
+  background-image: url('images/simon-berger-JH_R66BihvA-unsplash.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100%;
+
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.canvas_wrapper{
+  height: 100%;
+  width: 100%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.canvas{
+  background-color: red;
+  height: 100%;
+  width: 100%;
+}
+
+.input_container{
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  gap: 15px;
+}
+
+.header{
+  background-color: #482700;
+}
+
+h1{
+  text-align: center;
   color: white;
+  padding: 20px 0;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.grid_container{
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 20px;
 }

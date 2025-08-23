@@ -52,9 +52,9 @@ const App = () => {
 
     context.clearRect(0, 0, canvas.width, canvas.height)
     
+    
 
     const roughCanvas = rough.canvas(canvas)
-
     elements.forEach(({roughElement}) => roughCanvas.draw(roughElement));
   }, [elements]);
 
@@ -94,41 +94,58 @@ const App = () => {
   }
 
   return (
-    <div style={{color: 'white'}}>
-      <div style={{position:'fixed'}}>
-        <input
-         type='radio'
-         id='selection'
-         checked={tool === 'selection'}
-         onChange={() => setTool('selection')}
-         />
-         <label htmlFor='selection'>Selection</label>
+    <div style={{color: 'black'}} className='body'>
+      <header className='header'>
+        <div className='wrapper'>
+          <h1>Titre provisoire</h1>
+        </div>
+      </header>
+      <div className='wrapper grid_container'>
+        <div className='input_container'>
+          <div className='input'>
+            <input
+            type='radio'
+            id='selection'
+            checked={tool === 'selection'}
+            onChange={() => setTool('selection')}
+            />
+            <label htmlFor='selection'>Selection</label>
+          </div>
+          <div className='input'>
+            <input
+            type='radio'
+            id='line'
+            checked={tool === 'line'}
+            onChange={() => setTool('line')}
+            />
+            <label htmlFor='line'>Line</label>
+          </div>
 
-        <input
-         type='radio'
-         id='line'
-         checked={tool === 'line'}
-         onChange={() => setTool('line')}
-         />
-         <label htmlFor='line'>Line</label>
+          <div className='input'>
+            <input
+            type='radio'
+            id='rectangle'
+            checked={tool === 'rectangle'}
+            onChange={() => setTool('rectangle')}
+            />
+            <label htmlFor='rectangle'>Rectangle</label>
+          </div>
 
-         <input
-         type='radio'
-         id='rectangle'
-         checked={tool === 'rectangle'}
-         onChange={() => setTool('rectangle')}
-         />
-         <label htmlFor='rectangle'>Rectangle</label>
+          <div className='color_container'>
+            <p>Couleurs</p>
+          </div>
+        </div>
+        <div className='canvas_wrapper'>
+          <canvas id='canvas' className='canvas'
+              width={window.innerWidth} 
+              height={window.innerHeight}
+              onMouseDown={handleMouseDown} 
+              onMouseMove={handleMouseMove} 
+              onMouseUp={handleMouseUp}>
+              canvas
+          </canvas>
+        </div>
       </div>
-      <canvas id='canvas' 
-          style={{backgroundColor: '#3b3a39'}} 
-          width={window.innerWidth} 
-          height={window.innerHeight}
-          onMouseDown={handleMouseDown} 
-          onMouseMove={handleMouseMove} 
-          onMouseUp={handleMouseUp}>
-          canvas
-      </canvas>
     </div>
   );
 }

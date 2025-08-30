@@ -1,14 +1,15 @@
 import React, { useLayoutEffect, useState, useRef } from 'react';
 import './App.css';
 import rough from 'roughjs/bundled/rough.esm'
+import { ColorPicker } from 'primereact/colorpicker';
 
 const generator = rough.generator()
 
-function createElement(x1, y1, x2, y2, type) {
+function createElement(x1, y1, x2, y2, type, stroke, fill) {
   const roughElement = 
     type === 'line'
-      ? generator.line(x1, y1, x2, y2)
-      : generator.rectangle(x1, y1, x2 - x1, y2 - y1)
+      ? generator.line(x1, y1, x2, y2, {stroke})
+      : generator.rectangle(x1, y1, x2 - x1, y2 - y1, {stroke, fill})
   return { x1, y1, x2, y2, type, roughElement }
 }
 
@@ -57,7 +58,7 @@ const App = () => {
       const element = getElementAtPosition(x, y, elements)
       if (element) setAction('moving')
     } else {
-      const element = createElement(x, y, x, y, tool)
+      const element = createElement(x, y, x, y, tool, strokeColor, fillColor)
       setElements(prev => [...prev, element])
       setAction('drawing')
     }
@@ -68,7 +69,7 @@ const App = () => {
     const { x, y } = getCanvasCoordinates(event)
     const index = elements.length - 1
     const { x1, y1 } = elements[index]
-    const updatedElement = createElement(x1, y1, x, y, tool)
+    const updatedElement = createElement(x1, y1, x, y, tool, strokeColor, fillColor)
     const elementsCopy = [...elements]
     elementsCopy[index] = updatedElement
     setElements(elementsCopy)
@@ -78,12 +79,18 @@ const App = () => {
     setAction('idle')
   }
 
+  const [strokeColor, setStrokeColor] = useState('#000000')
+  const [fillColor, setFillColor] = useState('#ffffff')
+
   useLayoutEffect(() => {
     const canvas = canvasRef.current
     const context = canvas.getContext('2d')
+
     context.clearRect(0, 0, canvas.width, canvas.height)
     const roughCanvas = rough.canvas(canvas)
+
     elements.forEach(({ roughElement }) => roughCanvas.draw(roughElement))
+
   }, [elements])
 
   return (
@@ -98,20 +105,11 @@ const App = () => {
           <div className='input'>
             <input
               type='radio'
-              id='selection'
-              checked={tool === 'selection'}
-              onChange={() => setTool('selection')}
-            />
-            <label htmlFor='selection'>Selection</label>
-          </div>
-          <div className='input'>
-            <input
-              type='radio'
               id='line'
               checked={tool === 'line'}
               onChange={() => setTool('line')}
             />
-            <label htmlFor='line'>Line</label>
+            <label htmlFor='line'>Ligne</label>
           </div>
           <div className='input'>
             <input
@@ -122,12 +120,22 @@ const App = () => {
             />
             <label htmlFor='rectangle'>Rectangle</label>
           </div>
+
+          <div className='palette'>
+              <label htmlFor='strokeColor'>Couleur de bordure</label>
+              <ColorPicker value={strokeColor} onChange={(e) => setStrokeColor(e.value.startsWith('#') ? e.value : '#' + e.value)} inline></ColorPicker>
+          </div>
+
+          <div className='palette'>
+              <label htmlFor='fillColor'>Couleur de forme</label>
+              <ColorPicker value={fillColor} onChange={(e) => setFillColor(e.value.startsWith('#') ? e.value : '#' + e.value)} inline></ColorPicker>
+          </div>
         </div>
         <div className='canvas_wrapper'>
           <canvas
             ref={canvasRef}
             className='canvas'
-            width={800}  // tu peux ajuster pour ta grille
+            width={800}
             height={600}
             onMouseDown={handleMouseDown}
             onMouseMove={handleMouseMove}
@@ -137,6 +145,9 @@ const App = () => {
           </canvas>
         </div>
       </div>
+      <footer className='footer'>
+          <p>Projet étudiant</p>
+      </footer>
     </div>
   )
 }

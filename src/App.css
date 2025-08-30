@@ -13,17 +13,14 @@ html, body {
 h1, h2, h3, h4, h5, h6 { margin: 0; }
 
 .body{
-  background-image: url('images/simon-berger-JH_R66BihvA-unsplash.jpg');
+  background: linear-gradient(rgba(0, 0, 0, 0.6)), url('images/simon-berger-JH_R66BihvA-unsplash.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   min-height: 100vh;
 
-  padding-bottom: 25px;
-
 }
 
 .canvas_wrapper{
-  height: 100%;
   width: 100%;
 }
 
@@ -32,7 +29,7 @@ h1, h2, h3, h4, h5, h6 { margin: 0; }
   height: 100%;
   width: 100%;
 
-  box-shadow: 4px 4px 12px grey;
+  box-shadow: 4px 4px 12px black;
 }
 
 .input_container{
@@ -41,11 +38,11 @@ h1, h2, h3, h4, h5, h6 { margin: 0; }
   gap: 15px;
 
   background-color: whitesmoke;
-  box-shadow: 4px 4px 12px grey;
+  box-shadow: 4px 4px 12px black;
 }
 
 .header{
-  background-color: #482700;
+  background-color: black;
 }
 
 h1{
@@ -60,4 +57,15 @@ h1{
   gap: 20px;
   margin: 30px;
 
+}
+
+.footer{
+  background-color: black;
+  margin: 0;
+}
+
+p{
+  text-align: center;
+  color: white;
+  padding: 20px 0;
 }

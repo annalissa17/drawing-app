@@ -97,11 +97,13 @@ const App = () => {
     <div className='body'>
       <header className='header'>
         <div className='wrapper'>
-          <h1>Titre provisoire</h1>
+          <h1>Sketch</h1>
+          
         </div>
       </header>
       <div className='wrapper grid_container'>
         <div className='input_container'>
+          <h2>Outils</h2>
           <div className='input'>
             <input
               type='radio'
@@ -127,7 +129,7 @@ const App = () => {
           </div>
 
           <div className='palette'>
-              <label htmlFor='fillColor'>Couleur de forme</label>
+              <label htmlFor='fillColor'>Couleur de remplissage</label>
               <ColorPicker value={fillColor} onChange={(e) => setFillColor(e.value.startsWith('#') ? e.value : '#' + e.value)} inline></ColorPicker>
           </div>
         </div>
@@ -147,6 +149,7 @@ const App = () => {
       </div>
       <footer className='footer'>
           <p>Projet étudiant</p>
+          <p>Sketch est une application web pour le dessin. Elle utilise React comme framework et utilise canvas ainsi que la librairie RoughJS pour le dessin.</p>
       </footer>
     </div>
   )

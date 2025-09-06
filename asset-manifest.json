@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/drawing-app/static/css/main.fbbe2664.css",
+    "main.js": "/drawing-app/static/js/main.6026a108.js",
+    "static/js/453.bf8538f3.chunk.js": "/drawing-app/static/js/453.bf8538f3.chunk.js",
+    "static/media/simon-berger-JH_R66BihvA-unsplash.jpg": "/drawing-app/static/media/simon-berger-JH_R66BihvA-unsplash.865317807054dca0f921.jpg",
+    "index.html": "/drawing-app/index.html",
+    "main.fbbe2664.css.map": "/drawing-app/static/css/main.fbbe2664.css.map",
+    "main.6026a108.js.map": "/drawing-app/static/js/main.6026a108.js.map",
+    "453.bf8538f3.chunk.js.map": "/drawing-app/static/js/453.bf8538f3.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fbbe2664.css",
+    "static/js/main.6026a108.js"
+  ]
+}
